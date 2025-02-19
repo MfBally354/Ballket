@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballket - Aplikasi Belanja Online Perangkat Elektronik</title>
+    <style>
+        :root {
+            --primary-color: #4FA3D1;
+            --secondary-color: #2B7AAF;
+            --accent-color: #AFDFF3;
+            --light-bg: #EFF8FF;
+            --dark-text: #333333;
+            --light-text: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--light-text);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .search-bar {
+            display: flex;
+            background-color: var(--light-text);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            background: var(--secondary-color);
+            border: none;
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            padding: 3rem 1rem;
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--light-text);
+            color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .categories {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-img {
+            height: 200px;
+            background-color: var(--accent-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .category-img img {
+            max-width: 100%;
+            max-height: 150px;
+        }
+        
+        .category-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-info p {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .products {
+            padding: 3rem 1rem;
+            background-color: var(--light-text);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-color: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .product-img img {
+            max-width: 80%;
+            max-height: 150px;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #FF6B6B;
+            color: var(--light-text);
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .features {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--light-text);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonials {
+            padding: 3rem 1rem;
+            background-color: var(--light-text);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            margin-right: 1rem;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .cta {
+            padding: 4rem 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            padding: 3rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-text);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Ball<span>ket</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Kategori</a></li>
+                <li><a href="#">Promo</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="search-bar">
+        <input type="text" placeholder="Cari perangkat elektronik...">
+        <button>Cari</button>
+    </div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Belanja Perangkat Elektronik Terbaik di Ballket</h1>
+            <p>Temukan berbagai macam perangkat elektronik berkualitas dengan harga terbaik. Pengiriman cepat dan garansi resmi.</p>
+            <a href="#" class="btn">Belanja Sekarang</a>
+        </div>
+    </section>
+    
+    <section class="categories">
+        <h2 class="section-title">Kategori Produk</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="handphone-belanja-elektronik.jpg" alt="Smartphone">
+                </div>
+                <div class="category-info">
+                    <h3>Smartphone</h3>
+                    <p>Berbagai merek smartphone terkini</p>
+                    <a href="#" class="btn">Lihat Semua</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="/api/placeholder/200/150" alt="Laptop">
+                </div>
+                <div class="category-info">
+                    <h3>Laptop</h3>
+                    <p>Laptop untuk kerja dan gaming</p>
+                    <a href="#" class="btn">Lihat Semua</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="/api/placeholder/200/150" alt="Audio">
+                </div>
+                <div class="category-info">
+                    <h3>Audio</h3>
+                    <p>Speaker, headphone, dan earbuds</p>
+                    <a href="#" class="btn">Lihat Semua</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="/api/placeholder/200/150" alt="Kamera">
+                </div>
+                <div class="category-info">
+                    <h3>Kamera</h3>
+                    <p>Kamera DSLR dan mirrorless</p>
+                    <a href="#" class="btn">Lihat Semua</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="products">
+        <h2 class="section-title">Produk Terlaris</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="discount-badge">-15%</span>
+                <div class="product-img">
+                    <img src="/api/placeholder/180/150" alt="Smartphone X">
+                </div>
+                <div class="product-info">
+                    <h3>Smartphone X Pro</h3>
+                    <p class="price">Rp 5.499.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="/api/placeholder/180/150" alt="Laptop Y">
+                </div>
+                <div class="product-info">
+                    <h3>Laptop Y Slim</h3>
+                    <p class="price">Rp 12.999.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <span class="discount-badge">-20%</span>
+                <div class="product-img">
+                    <img src="/api/placeholder/180/150" alt="Wireless Earbuds">
+                </div>
+                <div class="product-info">
+                    <h3>Wireless Earbuds Z</h3>
+                    <p class="price">Rp 1.799.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="/api/placeholder/180/150" alt="Smartwatch">
+                </div>
+                <div class="product-info">
+                    <h3>Smartwatch Series 5</h3>
+                    <p class="price">Rp 3.299.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2 class="section-title">Mengapa Memilih Ballket?</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Pengiriman Cepat</h3>
+                <p>Pengiriman ke seluruh Indonesia dengan pilihan ekspres 1-2 hari kerja</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Garansi Resmi</h3>
+                <p>Semua produk memiliki garansi resmi Indonesia</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>Harga Terbaik</h3>
+                <p>Kami menjamin harga termurah untuk produk elektronik berkualitas</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2 class="section-title">Apa Kata Pelanggan Kami</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"Saya sangat puas berbelanja di Ballket. Produk original, pengiriman cepat, dan layanan pelanggan yang ramah."</p>
+                <div class="testimonial-author">
+                    <div class="author-img"></div>
+                    <div class="author-info">
+                        <h4>Budi Santoso</h4>
+                        <p>Jakarta</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Ballket adalah tempat terbaik untuk mencari gadget terbaru. Harga kompetitif dan banyak promo menarik!"</p>
+                <div class="testimonial-author">
+                    <div class="author-img"></div>
+                    <div class="author-info">
+                        <h4>Siti Rahma</h4>
+                        <p>Surabaya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Baru pertama kali belanja online, tapi Ballket bikin saya percaya. Produk sesuai deskripsi dan datang tepat waktu."</p>
+                <div class="testimonial-author">
+                    <div class="author-img"></div>
+                    <div class="author-info">
+                        <h4>Denny Wijaya</h4>
+                        <p>Bandung</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Unduh Aplikasi Ballket Sekarang!</h2>
+            <p>Dapatkan diskon eksklusif 10% untuk pembelian pertama melalui aplikasi. Nikmati pengalaman belanja yang lebih nyaman.</p>
+            <a href="#" class="btn">Unduh Sekarang</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Ballket</h3>
+                <p>Aplikasi belanja online terpercaya untuk kebutuhan elektronik Anda. Dengan jaminan kualitas dan harga terbaik.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">TW</a>
+                    <a href="#" class="social-link">YT</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kategori</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Smartphone</a></li>
+                    <li><a href="#">Laptop</a></li>
+                    <li><a href="#">Audio</a></li>
+                    <li><a href="#">Aksesoris</a></li>
+                    <li><a href="#">Kamera</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Layanan</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Pembayaran</a></li>
+                    <li><a href="#">Pengiriman</a></li>
+                    <li><a href="#">Pengembalian</a></li>
+                    <li><a href="#">Garansi</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Bantuan</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Ballket - Aplikasi Belanja Online Perangkat Elektronik. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

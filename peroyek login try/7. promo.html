@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballket - Flash Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-btn-header {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover, .cart-btn-header:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .timer span {
+            font-size: 18px;
+            margin: 0 10px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product img {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .discount {
+            color: white;
+            background-color: #e74c3c;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cart-btn {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="window.location.href='4.1. beranda.html'">&#8592;</button>
+        Flash Sale
+        <button class="cart-btn-header" onclick="window.location.href='13. keranjang.html'">🛒</button>
+    </div>
+    <div class="timer">
+        <span>Berakhir dalam:</span>
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+    <div class="container">
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Kaos Polos">
+            <div class="product-details">
+                <p class="product-title">Kaos Polos Cotton Combed Premium</p>
+                <p class="product-price"><span class="discount">-50%</span> Rp 75.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Diy Brick">
+            <div class="product-details">
+                <p class="product-title">DIY Brick Susun Karakter Mini</p>
+                <p class="product-price"><span class="discount">-30%</span> Rp 45.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Kabel Data">
+            <div class="product-details">
+                <p class="product-title">Kabel Data Macaron 2A Fast Charging</p>
+                <p class="product-price"><span class="discount">-40%</span> Rp 25.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Dompet Pria">
+            <div class="product-details">
+                <p class="product-title">Dompet Pria Terlaris</p>
+                <p class="product-price"><span class="discount">-60%</span> Rp 50.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Masker">
+            <div class="product-details">
+                <p class="product-title">Masker Duckbill 3 Ply 50 Pcs</p>
+                <p class="product-price"><span class="discount">-20%</span> Rp 120.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Powerbank">
+            <div class="product-details">
+                <p class="product-title">Bazel 590 Series Powerbank 20000mAh</p>
+                <p class="product-price"><span class="discount">-35%</span> Rp 250.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Celana Pendek">
+            <div class="product-details">
+                <p class="product-title">Celana Pendek Pria Jeans Kolor</p>
+                <p class="product-price"><span class="discount">-25%</span> Rp 90.000</p>
+                <div class="btn-group">
+                    <button class="btn">Beli</button>
+                    <button class="btn cart-btn">🛒 Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startCountdown() {
+            let hours = 0;
+            let minutes = 52;
+            let seconds = 27;
+
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
+
+                if (seconds < 0) {
+                    minutes--;
+                    seconds = 59;
+                }
+
+                if (minutes < 0) {
+                    hours--;
+                    minutes = 59;
+                }
+
+                if (hours < 0) {
+                    hours = 0;
+                    minutes = 52;
+                    seconds = 27;
+                }
+
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>

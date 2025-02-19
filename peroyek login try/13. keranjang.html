@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Saya - Ballket</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #e74c3c;
+            --text-color: #2c3e50;
+            --background-color: #f4f6f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-button {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .cart-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .edit-button {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .edit-button:hover {
+            opacity: 1;
+        }
+
+        .store-card {
+            background-color: white;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .store-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+
+        .custom-checkbox {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-checkbox:checked {
+            background-color: var(--primary-color);
+        }
+
+        .custom-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+        }
+
+        .star-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .promo-banner {
+            background: #fff7e6;
+            color: #d35400;
+            padding: 10px 15px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .product-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            color: var(--secondary-color);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            background-color: #f1f3f4;
+            border-radius: 20px;
+            padding: 5px;
+            width: max-content;
+        }
+
+        .quantity-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .quantity-button:hover {
+            background-color: #2980b9;
+        }
+
+        .voucher-section {
+            background-color: white;
+            margin: 10px;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .voucher-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            color: var(--secondary-color);
+        }
+
+        .checkout-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .total-price {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .checkout-button {
+            background: linear-gradient(135deg, var(--secondary-color), #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .checkout-button:hover {
+            transform: scale(1.05);
+        }
+
+        .savings {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="4.1. beranda.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="cart-title">Keranjang Saya (4)</div>
+        <a href="#" class="edit-button">Ubah</a>
+    </div>
+
+    <div class="store-card">
+        <div class="store-header">
+            <input type="checkbox" class="custom-checkbox">
+            <div class="star-badge">Star⭐</div>
+            <div>JAERSENT</div>
+            <a href="#" class="edit-button">Ubah</a>
+        </div>
+
+        <div class="promo-banner">
+            Tambah 2 produk lagi diskon 1%
+        </div>
+
+        <div class="product-card">
+            <input type="checkbox" class="custom-checkbox" checked>
+            <img src="ssd-image.jpg" alt="SSD" class="product-image">
+            <div class="product-details">
+                <div class="product-title">SSD Eksternal 4TB USB 3.0 Type-C</div>
+                <div class="product-price">Rp84.455</div>
+                <div class="quantity-control">
+                    <button class="quantity-button">-</button>
+                    <span>1</span>
+                    <button class="quantity-button">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="store-card">
+        <div class="store-header">
+            <input type="checkbox" class="custom-checkbox">
+            <div class="star-badge">Star⭐</div>
+            <div>GRANDSTOREID</div>
+            <a href="#" class="edit-button">Ubah</a>
+        </div>
+
+        <div class="product-card">
+            <input type="checkbox" class="custom-checkbox">
+            <img src="xiaomi-image.jpg" alt="Xiaomi" class="product-image">
+            <div class="product-details">
+                <div class="product-title">XIAOMI 15 PRO 5G 16GB+1TB</div>
+                <div class="product-variant">White, 12GB/256GB</div>
+                <div class="product-price">Rp17.500.000</div>
+                <div class="quantity-control">
+                    <button class="quantity-button">-</button>
+                    <span>1</span>
+                    <button class="quantity-button">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="voucher-section">
+        <div>Voucher Ballket</div>
+        <div class="voucher-button">
+            <span>Voucher Gratis Ongkir</span>
+            <span>-Rp4,445RB</span>
+        </div>
+    </div>
+
+    <div class="checkout-bar">
+        <div>
+            <div class="total-price">Total Rp84.455</div>
+            <div class="savings">Hemat Rp165,545RB</div>
+        </div>
+        <button class="checkout-button">Checkout (1)</button>
+    </div>
+</body>
+</html>

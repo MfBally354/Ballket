@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi - Ballket</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+        }
+
+        .top-nav {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .nav-icon i {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .nav-icon.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-icon:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .header {
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-icon {
+            position: relative;
+            color: #666;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-icon:hover {
+            color: #4A90E2;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ee4d2d;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 12px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .notification-card {
+            display: flex;
+            padding: 20px;
+            background: white;
+            margin: 10px;
+            border-radius: 12px;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .notification-icon {
+            width: 50px;
+            height: 50px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .notification-desc {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .order-status {
+            margin: 20px 10px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .order-status h2 {
+            padding: 20px;
+            font-size: 18px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .status-item:hover {
+            background: #f8f9fa;
+        }
+
+        .status-item h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .status-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status-time {
+            color: #999;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-icon span {
+                display: none;
+            }
+            
+            .nav-icon i {
+                font-size: 22px;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">Ballket</a>
+            <div class="nav-icons">
+                <a href="4.1. beranda.html" class="nav-icon">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a>
+                <a href="#" class="nav-icon">
+                    <i class="fas fa-fire"></i>
+                    <span>Trending</span>
+                </a>
+                <a href="#" class="nav-icon">
+                    <i class="fas fa-video"></i>
+                    <span>Live & Video</span>
+                </a>
+                <a href="#" class="nav-icon active">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifikasi</span>
+                </a>
+                <a href="14. saya.html" class="nav-icon">
+                    <i class="fas fa-user"></i>
+                    <span>Saya</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Notifikasi</h1>
+        <div class="action-icons">
+            <div class="action-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="notification-badge">2</span>
+            </div>
+            <div class="action-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-card">
+        <div class="notification-icon">
+            <i class="fas fa-tag"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">Promo Ballket</div>
+            <div class="notification-desc">Kamu bisa terima iPhone 15 + ada Cicilan 0%</div>
+        </div>
+        <div class="notification-badge">13</div>
+    </div>
+
+    <div class="notification-card">
+        <div class="notification-icon">
+            <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">Live, Video & Games</div>
+            <div class="notification-desc">Iqbalguntur, silakan panen & nikmati Voucher</div>
+        </div>
+        <div class="notification-badge">9</div>
+    </div>
+
+    <div class="order-status">
+        <h2>Status Pesanan</h2>
+        
+        <div class="status-item">
+            <h3><i class="fas fa-check-circle" style="color: #4CAF50"></i> Pesanan Tiba</h3>
+            <p>Pesanan 250104M14U7G77 dengan no. resi ID2546406807885V telah tiba di tujuan.</p>
+            <div class="status-time">05-01-2025 09:59</div>
+        </div>
+
+        <div class="status-item">
+            <h3><i class="fas fa-shipping-fast" style="color: #2196F3"></i> Pesanan Diserahkan ke Jasa Kirim</h3>
+            <p>Pesanan akan diproses. Cek rincian dan lacak pesanan 250104M14U7G77 di sini.</p>
+            <div class="status-time">04-01-2025 18:17</div>
+        </div>
+
+        <div class="status-item">
+            <h3><i class="fas fa-credit-card" style="color: #4A90E2"></i> Pembayaran Berhasil</h3>
+            <p>Pesanan 250104M14U7G77 akan segera dikirim Penjual.</p>
+            <div class="status-time">04-01-2025 18:14</div>
+        </div>
+    </div>
+
+    <script>
+        // Menambahkan fungsi untuk navigasi
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                // Menghapus kelas active dari semua nav-icon
+                document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
+                // Menambahkan kelas active ke icon yang diklik
+                this.classList.add('active');
+            });
+        });
+
+        // Menambahkan fungsi untuk notifikasi badge
+        document.querySelectorAll('.action-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const badge = this.querySelector('.notification-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+            });
+        });
+
+        // Menambahkan efek hover pada notification cards
+        document.querySelectorAll('.notification-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const badge = this.querySelector('.notification-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

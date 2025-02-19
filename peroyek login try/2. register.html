@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballket - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #4A90E2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.1);
+            outline: none;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 20px;
+            top: -10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4A90E2;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover {
+            background: #357ABD;
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .social-register {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn i {
+            font-size: 1.2em;
+        }
+
+        .social-btn.google:hover {
+            background: #DB4437;
+            border-color: #DB4437;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .social-btn.facebook:hover {
+            background: #4267B2;
+            border-color: #4267B2;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .social-btn.instagram:hover {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            border-color: #C13584;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .login-link a {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .terms a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .input-row .input-group {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .register-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .input-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">
+            <h1>Ballket</h1>
+            <p>Join Our Shopping Community</p>
+        </div>
+        
+        <form onsubmit="return validateRegister(event)">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="firstname">Nama Depan</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastname">Nama Belakang</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Nomor Telepon</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirm-password">Konfirmasi Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            
+            <button type="submit" class="register-btn">Daftar Sekarang</button>
+        </form>
+
+        <div class="divider">atau daftar dengan</div>
+
+        <div class="social-register">
+            <div class="social-btn google" onclick="socialRegister('google')">
+                <i class="fab fa-google"></i>
+            </div>
+            <div class="social-btn facebook" onclick="socialRegister('facebook')">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="social-btn instagram" onclick="socialRegister('instagram')">
+                <i class="fab fa-instagram"></i>
+            </div>
+        </div>
+
+        <div class="login-link">
+            Sudah punya akun? <a href="1. login.html">Masuk di sini</a>
+        </div>
+
+        <div class="terms">
+            Dengan mendaftar, Anda menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> kami
+        </div>
+    </div>
+
+    <script>
+        function validateRegister(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Basic email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Mohon masukkan email yang valid!');
+                return false;
+            }
+
+            // Basic phone validation
+            const phonePattern = /^[0-9]{10,13}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Mohon masukkan nomor telepon yang valid (10-13 digit)!');
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 8) {
+                alert('Password harus minimal 8 karakter!');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Password dan konfirmasi password tidak cocok!');
+                return false;
+            }
+
+            // If all validations pass
+            alert('Registrasi berhasil! Silahkan cek email Anda untuk verifikasi.');
+            window.location.href = 'login.html';
+        }
+
+        function socialRegister(platform) {
+            alert(`Registrasi dengan ${platform} akan segera tersedia!`);
+        }
+    </script>
+</body>
+</html>
