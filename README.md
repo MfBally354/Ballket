@@ -174,7 +174,7 @@ Proyek ini dibuat untuk tujuan pembelajaran dan dapat digunakan secara bebas unt
 **Iqbal Guntur Bismoko**
 
 - 📧 Email: iqbalguntur354@gmail.com
-- 📱 WhatsApp: +62 895-3524-15628
+- 📱 WhatsApp: +62 895-3524-1562
 
 ---
 
