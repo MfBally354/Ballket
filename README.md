@@ -1,6 +1,7 @@
 # 🛒 Ballket - Aplikasi Belanja Online
 
-![Ballket Logo](logo-icon.png)
+<img width="1920" height="1080" alt="Screenshot (603)" src="https://github.com/user-attachments/assets/b5a0e866-1139-45c0-81c9-f1f7f0af312d" />
+
 
 ## 📖 Deskripsi Proyek
 
